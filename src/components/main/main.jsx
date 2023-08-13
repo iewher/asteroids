@@ -5,12 +5,16 @@ import Asteroids from "../asteroids/asteroids";
 
 export default function Main() {
   const [active, setActive] = useState(false);
-  const [basketValue, setBasketValue] = useState(0)
+  const [cartValue, setCartValue] = useState(0);
 
   const handleSetActive = (value) => {
     if (value !== active) {
       setActive(value);
     }
+  };
+
+  const handleCartValueChange = (value) => {
+    setCartValue(value);
   };
 
   // console.log(active);
@@ -35,14 +39,17 @@ export default function Main() {
               в лунных орбитах
             </p>
           </div>
-          <Asteroids active={active}/>
+          <Asteroids
+            active={active}
+            onCartValueChange={handleCartValueChange}
+          />
         </div>
-        <div className="container__basket">
-          <div className="container__basket-text">
+        <div className="container__cart">
+          <div className="container__cart-text">
             <h1>Корзина</h1>
-            <p>{basketValue} астероидов</p>
+            <p>{cartValue} астероидов</p>
           </div>
-          <div className="container__basket-button">
+          <div className="container__cart-button">
             <button>Отправить</button>
           </div>
         </div>

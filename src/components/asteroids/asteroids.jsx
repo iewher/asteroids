@@ -3,26 +3,44 @@ import "../../scss/asteroids/asteroids.scss";
 
 import { AiFillWarning } from "react-icons/ai";
 import asteroid_large from "../svg/asteroid-large.svg";
+import asteroid_small from "../../components/svg/asteroid-small.svg";
 import arrow from "../svg/arrow.svg";
 
-export default function Asteroids({ active }) {
+export default function Asteroids({ active, onCartValueChange }) {
   const [asteroids, setAsteroids] = useState(null);
   const [asteroidState, setAsteroidState] = useState([]);
+  const [cartValue, setCartValue] = useState(0);
 
   // const today = new Date().toISOString().split("T")[0];
   const API_KEY = "5qTNISBUU6vUfgmmK2mE3IWbeT5uc7MStNkjkl56";
 
-  console.log(active);
+  // console.log(active);
 
   // console.log(today);
 
   const handleButtonClick = (index) => {
-    // Копируем массив состояний астероидов
     const newAsteroidState = [...asteroidState];
-    // Меняем состояние только для выбранного астероида
     newAsteroidState[index] = !newAsteroidState[index];
     setAsteroidState(newAsteroidState);
+
+    const handleCartChange = () => {
+      if (newAsteroidState[index]) {
+        setCartValue(cartValue + 1);
+      } else {
+        setCartValue(cartValue - 1);
+      }
+    };
+
+    const updatedCartValue = newAsteroidState.reduce(
+      (total, isAdded) => total + (isAdded ? 1 : 0),
+      0
+    );
+
+    handleCartChange();
+    onCartValueChange(updatedCartValue);
   };
+
+  // console.log(basketValue);
 
   const fetchData = () => {
     fetch(
@@ -34,7 +52,7 @@ export default function Asteroids({ active }) {
         setAsteroids(data.near_earth_objects);
       })
       .catch((error) => {
-        console.error("Запрос не сработал");
+        console.error(error, "Запрос не сработал");
       });
   };
 
@@ -42,7 +60,7 @@ export default function Asteroids({ active }) {
     fetchData();
   }, []);
 
-  console.log(asteroids);
+  // console.log(asteroids);
 
   return (
     <>
@@ -67,11 +85,23 @@ export default function Asteroids({ active }) {
                   <img src={arrow} alt="Arrow" />
                 </div>
                 <div className="asteroid__image">
-                  <img src={asteroid_large} alt="Asteroid" />
+                  {Math.round(
+                    asteroid.close_approach_data[0].miss_distance.kilometers
+                  ) > 25000000 ? (
+                    <img src={asteroid_large} alt="Asteroid" />
+                  ) : (
+                    <img src={asteroid_small} alt="Asteroid" />
+                  )}
                 </div>
                 <div className="asteroid__name">
                   <p className="name">{asteroid.name}</p>
-                  <p className="diameter">&#x2300;{Math.round(asteroid.estimated_diameter.meters.estimated_diameter_max)}м</p>
+                  <p className="diameter">
+                    &#x2300;{" "}
+                    {Math.round(
+                      asteroid.estimated_diameter.meters.estimated_diameter_max
+                    )}{" "}
+                    м
+                  </p>
                 </div>
                 <div className="asteroid__button_and_warning">
                   <button onClick={() => handleButtonClick(index)}>

@@ -29,6 +29,10 @@
       flex-direction: column;
       gap: 8px;
       font-size: 16px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
     .diameter {
       text-decoration: none;
@@ -37,10 +41,6 @@
 
     p {
       text-decoration: underline;
-
-      &:hover {
-        cursor: pointer;
-      }
     }
   }
 
