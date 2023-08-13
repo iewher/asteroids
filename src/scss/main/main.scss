@@ -11,10 +11,11 @@
     width: auto;
     height: auto;
     display: flex;
-    background-size: cover;
+    background-color: inherit;
 
     &__asteroids {
       width: 400px;
+      background-color: inherit;
     }
 
     &__basket {
@@ -31,6 +32,7 @@
         p {
           font-size: 16px;
           line-height: 24px;
+          margin: 0;
         }
       }
 
@@ -48,8 +50,42 @@
           color: white;
           font-size: 16px;
           font-weight: bold;
+          cursor: pointer;
+          border: none;
+          transition: 0.2s;
+
+          &:hover {
+            background-color: rgba(248, 102, 0, 0.15);
+          }
         }
       }
     }
+  }
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  p {
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  .active {
+    text-decoration: underline;
+  }
+}
+
+.icon {
+  &-active {
+    color: yellow;
+  }
+
+  &-disable {
+    display: none;
   }
 }
