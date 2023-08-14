@@ -6,10 +6,15 @@ import asteroid_large from "../svg/asteroid-large.svg";
 import asteroid_small from "../../components/svg/asteroid-small.svg";
 import arrow from "../svg/arrow.svg";
 
-export default function Asteroids({ active, onCartValueChange }) {
-  const [asteroids, setAsteroids] = useState(null);
-  const [asteroidState, setAsteroidState] = useState([]);
-  const [cartValue, setCartValue] = useState(0);
+interface AsteroidProps {
+  active: boolean;
+  onCartValueChange: (value: number) => void;
+}
+
+const Asteroids:React.FC<AsteroidProps> = ({ active, onCartValueChange }) => {
+  const [asteroids, setAsteroids] = useState<any | null>(null);
+  const [asteroidState, setAsteroidState] = useState<boolean[]>([]);
+  const [cartValue, setCartValue] = useState<number>(0);
 
   // const today = new Date().toISOString().split("T")[0];
   const API_KEY = "5qTNISBUU6vUfgmmK2mE3IWbeT5uc7MStNkjkl56";
@@ -18,7 +23,7 @@ export default function Asteroids({ active, onCartValueChange }) {
 
   // console.log(today);
 
-  const handleButtonClick = (index) => {
+  const handleButtonClick = (index: number) => {
     const newAsteroidState = [...asteroidState];
     newAsteroidState[index] = !newAsteroidState[index];
     setAsteroidState(newAsteroidState);
@@ -67,7 +72,7 @@ export default function Asteroids({ active, onCartValueChange }) {
       {asteroids &&
         Object.keys(asteroids).map((date) => (
           <div>
-            {asteroids[date].map((asteroid, index) => (
+            {asteroids[date].map((asteroid: any, index: number) => (
               <div className="asteroid">
                 <h1 className="asteroid__date">{date}</h1>
                 <div className="asteroid__distance">
@@ -129,3 +134,5 @@ export default function Asteroids({ active, onCartValueChange }) {
     </>
   );
 }
+
+export default Asteroids;

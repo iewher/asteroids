@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../../scss/main/main.scss";
 
-import Asteroids from "../asteroids/asteroids";
+import Asteroids from "../asteroids/asteroids.tsx";
 
-export default function Main() {
-  const [active, setActive] = useState(false);
-  const [cartValue, setCartValue] = useState(0);
+import planet from "../svg/planet.svg";
 
-  const handleSetActive = (value) => {
+interface MainProps {}
+
+const Main: React.FC<MainProps> = () => {
+  const [active, setActive] = useState<boolean>(false);
+  const [cartValue, setCartValue] = useState<number>(0);
+
+  const handleSetActive = (value: boolean) => {
     if (value !== active) {
       setActive(value);
     }
   };
 
-  const handleCartValueChange = (value) => {
+  const handleCartValueChange = (value: number) => {
     setCartValue(value);
   };
 
@@ -21,6 +25,7 @@ export default function Main() {
 
   return (
     <div className="main">
+      <img src={planet} alt="Planet" className="planet" />
       <div className="container">
         <div className="container__asteroids">
           <h1>Ближайшие подлёты астероидов</h1>
@@ -56,4 +61,6 @@ export default function Main() {
       </div>
     </div>
   );
-}
+};
+
+export default Main;
