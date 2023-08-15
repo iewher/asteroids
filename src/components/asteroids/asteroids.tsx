@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import "../../scss/asteroids/asteroids.scss";
 
 import { AiFillWarning } from "react-icons/ai";
@@ -6,18 +6,22 @@ import asteroid_large from "../svg/asteroid-large.svg";
 import asteroid_small from "../../components/svg/asteroid-small.svg";
 import arrow from "../svg/arrow.svg";
 
+import { Link } from "react-router-dom";
+import { AppRoute } from "../const";
+import useFetchData from "../fetch/api.tsx";
+
 interface AsteroidProps {
   active: boolean;
   onCartValueChange: (value: number) => void;
 }
 
-const Asteroids:React.FC<AsteroidProps> = ({ active, onCartValueChange }) => {
-  const [asteroids, setAsteroids] = useState<any | null>(null);
+const Asteroids: React.FC<AsteroidProps> = ({ active, onCartValueChange }) => {
   const [asteroidState, setAsteroidState] = useState<boolean[]>([]);
   const [cartValue, setCartValue] = useState<number>(0);
 
+  const asteroids = useFetchData();
+
   // const today = new Date().toISOString().split("T")[0];
-  const API_KEY = "5qTNISBUU6vUfgmmK2mE3IWbeT5uc7MStNkjkl56";
 
   // console.log(active);
 
@@ -46,24 +50,6 @@ const Asteroids:React.FC<AsteroidProps> = ({ active, onCartValueChange }) => {
   };
 
   // console.log(basketValue);
-
-  const fetchData = () => {
-    fetch(
-      `https://api.nasa.gov/neo/rest/v1/feed?start_date=&end_date=&api_key=${API_KEY}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        // console.log(data.near_earth_objects);
-        setAsteroids(data.near_earth_objects);
-      })
-      .catch((error) => {
-        console.error(error, "Запрос не сработал");
-      });
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   // console.log(asteroids);
 
@@ -99,7 +85,9 @@ const Asteroids:React.FC<AsteroidProps> = ({ active, onCartValueChange }) => {
                   )}
                 </div>
                 <div className="asteroid__name">
-                  <p className="name">{asteroid.name}</p>
+                  <Link to={AppRoute.ASTEROID_PAGE + asteroid.id}>
+                    <p className="name">{asteroid.name}</p>
+                  </Link>
                   <p className="diameter">
                     &#x2300;{" "}
                     {Math.round(
@@ -133,6 +121,6 @@ const Asteroids:React.FC<AsteroidProps> = ({ active, onCartValueChange }) => {
         ))}
     </>
   );
-}
+};
 
 export default Asteroids;

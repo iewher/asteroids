@@ -1,7 +1,9 @@
 import React from "react";
 import "../../scss/header/header.scss";
 
-export default function Header() {
+interface HeaderProps {}
+
+const Header: React.FC<HeaderProps> = () => {
   return (
     <div className="header">
       <h1>ARMAGEDDON 2023</h1>
@@ -11,4 +13,6 @@ export default function Header() {
       </p>
     </div>
   );
-}
+};
+
+export default Header;

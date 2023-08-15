@@ -1,16 +1,20 @@
 import React from "react";
 import "./scss/app.scss";
-import Header from "./components/header/header";
-import Footer from "./components/footer/footer";
 import Main from "./components/main/main.tsx";
+import PageAsteroids from "./components/pageAsteroids/page-asteroid.tsx";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import { AppRoute } from "./components/const";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Main />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={AppRoute.ROOT} element={<Main />} />
+        <Route path={AppRoute.ASTEROID_PAGE} element={<PageAsteroids />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

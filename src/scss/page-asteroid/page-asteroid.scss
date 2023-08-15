@@ -1,0 +1,49 @@
+.page_asteroid {
+  height: auto;
+  min-height: 75vh;
+  color: white;
+  display: grid;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .information {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .button {
+    button {
+      padding: 16px;
+      width: 30%;
+      text-transform: uppercase;
+      background-color: rgba(248, 102, 0, 0.15);
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      border-radius: 16px;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+        background-color: rgba(248, 102, 0, 1);
+      }
+    }
+  }
+}
