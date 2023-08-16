@@ -5,7 +5,7 @@ import { AppRoute } from "../const";
 import Header from "../header/header.tsx";
 import Footer from "../footer/footer.tsx";
 import useFetchData from "../fetch/api.tsx";
-import Asteroids from "../asteroids/asteroids.tsx";
+import Asteroids from "../asteroids/asteroids";
 import asteroid_large from "../../components/svg/asteroid-large.svg";
 import { Link } from "react-router-dom";
 
@@ -16,7 +16,7 @@ const PageAsteroids: React.FC<PageAsteroidsProps> = () => {
   const { id } = useParams();
   const cleanedId = id?.replace(/[^0-9]/g, "");
 
-  console.log(fetchedAsteroids);
+  // console.log(fetchedAsteroids);
 
   // Ищем астероид с нужным id
   let asteroid = null;
@@ -37,7 +37,7 @@ const PageAsteroids: React.FC<PageAsteroidsProps> = () => {
     }
   }
 
-  console.log(asteroid);
+  // console.log(asteroid);
 
   return (
     <>

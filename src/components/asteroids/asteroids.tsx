@@ -12,12 +12,13 @@ import useFetchData from "../fetch/api.tsx";
 
 interface AsteroidProps {
   active: boolean;
-  onCartValueChange: (value: number) => void;
+  onCartValueChange: (value: number, asteroidIds: number[]) => void;
 }
 
 const Asteroids: React.FC<AsteroidProps> = ({ active, onCartValueChange }) => {
   const [asteroidState, setAsteroidState] = useState<boolean[]>([]);
   const [cartValue, setCartValue] = useState<number>(0);
+  const [asteroidIds, setAsteroidIds] = useState<number[]>([]);
 
   const asteroids = useFetchData();
 
@@ -27,29 +28,30 @@ const Asteroids: React.FC<AsteroidProps> = ({ active, onCartValueChange }) => {
 
   // console.log(today);
 
-  const handleButtonClick = (index: number) => {
+  const handleButtonClick = (date: string, index: number) => {
     const newAsteroidState = [...asteroidState];
     newAsteroidState[index] = !newAsteroidState[index];
     setAsteroidState(newAsteroidState);
 
-    const handleCartChange = () => {
-      if (newAsteroidState[index]) {
-        setCartValue(cartValue + 1);
-      } else {
-        setCartValue(cartValue - 1);
-      }
-    };
+    const asteroidId = asteroids[date][index].id;
 
-    const updatedCartValue = newAsteroidState.reduce(
-      (total, isAdded) => total + (isAdded ? 1 : 0),
-      0
+    const updatedAsteroidIds = newAsteroidState.reduce(
+      (ids, isAdded, currentIndex) => {
+        if (isAdded) {
+          ids.push(asteroids[date][currentIndex].id);
+        }
+        return ids;
+      },
+      [] as number[]
     );
 
-    handleCartChange();
-    onCartValueChange(updatedCartValue);
-  };
+    setAsteroidIds(updatedAsteroidIds);
 
-  // console.log(basketValue);
+    // Используем updatedAsteroidIds для вычисления updatedCartValue
+    const updatedCartValue = updatedAsteroidIds.length;
+
+    onCartValueChange(updatedCartValue, updatedAsteroidIds);
+  };
 
   // console.log(asteroids);
 
@@ -97,7 +99,7 @@ const Asteroids: React.FC<AsteroidProps> = ({ active, onCartValueChange }) => {
                   </p>
                 </div>
                 <div className="asteroid__button_and_warning">
-                  <button onClick={() => handleButtonClick(index)}>
+                  <button onClick={() => handleButtonClick(date, index)}>
                     {asteroidState[index] ? "в корзине" : "заказать"}
                   </button>
                   <div className="warning">
