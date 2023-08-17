@@ -42,7 +42,9 @@ const Main: React.FC<MainProps> = () => {
         <img src={planet} alt="Planet" className="planet" />
         <div className="container">
           <div className="container__asteroids">
-            <h1>Ближайшие подлёты астероидов</h1>
+            <div className="container__header">
+              <h1>Ближайшие подлёты астероидов</h1>
+            </div>
             <div className="choice">
               <p
                 className={!active ? "active" : ""}

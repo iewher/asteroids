@@ -8,6 +8,7 @@ import useFetchData from "../fetch/api.tsx";
 import Asteroids from "../asteroids/asteroids";
 import asteroid_large from "../../components/svg/asteroid-large.svg";
 import { Link } from "react-router-dom";
+import { Radio } from "react-loader-spinner";
 
 interface PageAsteroidsProps {}
 
@@ -98,7 +99,16 @@ const PageAsteroids: React.FC<PageAsteroidsProps> = () => {
             </div>
           </div>
         ) : (
-          <p>Астероид с id {cleanedId} не найден</p>
+          <div className="loading">
+            <Radio
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="radio-loading"
+              wrapperStyle={{}}
+              wrapperClass="radio-wrapper"
+            />
+          </div>
         )}
       </div>
       <Footer />
