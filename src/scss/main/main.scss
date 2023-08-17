@@ -1,6 +1,7 @@
 .main {
   height: 100%;
   width: 100%;
+  max-width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,6 +17,17 @@
     &__asteroids {
       width: 400px;
       background-color: inherit;
+
+      h1 {
+        width: fit-content;
+      }
+
+      @media (max-width: 1000px) {
+        height: 50%;
+        max-height: 75vh;
+        overflow: hidden;
+        overflow-y: scroll;
+      }
     }
 
     &__cart {
@@ -34,6 +46,10 @@
           font-size: 16px;
           line-height: 24px;
           margin: 0;
+        }
+
+        @media (max-width: 1000px) {
+          margin-left: 16px;
         }
       }
 
@@ -59,6 +75,25 @@
             background-color: rgba(248, 102, 0, 0.15);
           }
         }
+
+        @media (max-width: 1000px) {
+          margin-right: 16px;
+        }
+      }
+
+      @media (max-width: 1000px) {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-radius: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 81px;
+        width: 100%;
+        max-width: 100vw;
+        margin: 0;
+        padding: 0;
       }
     }
   }
@@ -96,4 +131,8 @@
   top: 25%;
   left: 0;
   z-index: 1;
+
+  @media (max-width: 1000px) {
+    left: -40%;
+  }
 }

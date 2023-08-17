@@ -4,7 +4,7 @@
   height: fit-content;
   width: fit-content;
   padding: 16px;
-  min-width: 375px;
+  min-width: fit-content;
   color: white;
 
   h1 {
@@ -17,5 +17,10 @@
   p {
     font-size: 16px;
     line-height: 24px;
+  }
+
+  @media (max-width: 1000px) {
+    height: 20%;
+    padding: 0 16px;
   }
 }

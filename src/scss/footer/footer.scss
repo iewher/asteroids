@@ -1,4 +1,9 @@
 .footer {
-    color: white;
-    margin: 16px;
+  color: white;
+  margin: 16px;
+  background: inherit;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
 }
