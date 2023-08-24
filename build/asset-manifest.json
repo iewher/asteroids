@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.053e732d.css",
+    "main.js": "/static/js/main.e2ef42d4.js",
+    "static/media/planet.svg": "/static/media/planet.047f8e19b503594db3281e3e10f4161d.svg",
+    "static/media/asteroid-large.svg": "/static/media/asteroid-large.cce8ec3d4cd38034b4100534f480b239.svg",
+    "static/media/asteroid-small.svg": "/static/media/asteroid-small.ff1af66a0e35ca2d5733fb1cd626000a.svg",
+    "index.html": "/index.html",
+    "static/media/arrow.svg": "/static/media/arrow.53abfe6ae4028fa6dc723e35afc360c9.svg",
+    "main.053e732d.css.map": "/static/css/main.053e732d.css.map",
+    "main.e2ef42d4.js.map": "/static/js/main.e2ef42d4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.053e732d.css",
+    "static/js/main.e2ef42d4.js"
+  ]
+}
