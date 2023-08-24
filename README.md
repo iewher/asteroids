@@ -1,3 +1,42 @@
+#  Тестовое задание в компанию "Квартирка"
+
+Задание написано на TypeScript, использованные библиотеки:
+1. react-router-dom
+2. react-loader-spinner
+3. react-icons
+
+Стили написаны на SCSS
+
+## Использованный API
+  
+1. https://api.nasa.gov/
+
+# Обзор
+
+Изображения задания с компьютера и телефона
+
+<div align="center">
+  
+## на ПК
+
+### Главная
+
+<image src="public/forgithub/forgithub1.jpg" height="450" width="800">
+
+### Корзина
+
+<image src="public/forgithub/forgithub2.jpg" height="450" width="800">
+
+### Страница астероида
+
+<image src="public/forgithub/forgithub3.jpg" height="450" width="800">
+
+## на телефоне
+
+<image src="public/forgithub/forgithubmobile.jpg" height="500" width="300">
+  
+</div>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
